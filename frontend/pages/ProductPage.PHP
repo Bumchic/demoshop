@@ -21,7 +21,7 @@
             <?php include_once('../partial/partialSideNav.PHP'); ?>
             <!-- end sidebar -->
             <div class="col">
-                <main role="main" class="col-md-10 ml-sm-auto px-4 mb-2 col">   
+                <main role="main" class="col-md-10 ml-sm-auto px-4 mb-2 col"> 
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Product List</h1>
