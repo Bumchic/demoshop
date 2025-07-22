@@ -1,6 +1,5 @@
 main{
     flex: 1;
-    height: 100vh;
 }
 body{
     display: flex;
