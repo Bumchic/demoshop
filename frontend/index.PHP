@@ -4,11 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Document</title>
     <?php include_once("asset\Style.php"); ?>
+    <title>Document</title>
+
+
 </head>
 
 <body class="d-flex flex-column">
+    <?php
+    include("../connectDB.PHP");
+    $connection = connectDb();
+    $result = $connection->query("SELECT *, Image_url, Category FROM products ORDER BY idproducts DESC");
+    $prod = [];
+    while ($row = $result->fetch_array(MYSQLI_NUM)) {
+        $prod[] = $row;
+    }
+    $connection->close();
+    ?>
     <div class="container-fluid">
         <!-- header -->
         <?php include_once('partial/SharedHeader.PHP'); ?>
@@ -40,12 +52,9 @@
             </button>
         </div>
 
-        
+
         <div class="container-fluid">
             <div class="row">
-                <!-- sidebar -->
-                <?php include_once('partial/partialSideNav.PHP'); ?>
-                <!-- end sidebar -->
                 <div class="col">
 
                     <!-- Block content -->
@@ -118,13 +127,59 @@
 
 
                     </main>
+                    <section style="background-color: #eee;">
+                        <div class="container py-5">
+                            <H1 class="d-flex justify-content-center">Products</H1>
+
+                            <?php for ($i = 0; $i < sizeof($prod); $i++) {
+                                ?>
+                                <div class="row">
+                                    <?php for ($j = 0; $j < 3 && $i < sizeof($prod); $j++) { ?>
+                                        <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+                                            <div class="card text-black">
+                                                <img src="/demoshop/frontend/asset/images/<?php echo $prod[$i][5] ?>"
+                                                    class="card-img-top" />
+                                                <div class="card-body">
+                                                    <div class="text-center mt-1">
+                                                        <h4 class="card-title"><?php echo $prod[$i][1] ?></h4>
+                                                        <h6 class="text-primary mb-1 pb-3">Price: <?php echo $prod[$i][3] ?>
+                                                        </h6>
+                                                    </div>
+
+                                                    <div class="text-center">
+                                                        <div class="p-3 mx-n3 mb-4" style="background-color: #eff1f2;">
+                                                            <h5 class="mb-0">Quick Look</h5>
+                                                        </div>
+                                                        <div class="d-flex flex-column mb-4">
+                                                            <span><?php echo $prod[$i][2] ?></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex flex-row">
+                                                        <a type="button" data-mdb-button-init data-mdb-ripple-init
+                                                            class="btn btn-danger flex-fill ms-1" href="pages/ProductDetail.PHP?id=<?php echo $prod[$i][0] ?>">Buy now</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        $i++;
+                                    } ?>
+
+                                </div>
+                            <?php }
+                            ?>
+
+
+                        </div>
+                    </section>
                 </div>
             </div>
             <!-- End block content -->
         </div>
-            <!-- footer -->
-                <?php include_once('partial/partialFooter.PHP'); ?>
-            <!-- end footer -->
+        <!-- footer -->
+        <?php include_once('partial/partialFooter.PHP'); ?>
+        <!-- end footer -->
 
 
         <!-- Nhúng file quản lý phần SCRIPT JAVASCRIPT -->
@@ -134,9 +189,10 @@
         <!-- <script src="/php/myhand/assets/vendor/Chart.js/Chart.min.js"></script> -->
     </div>
 </body>
-        <?php include_once("asset\Script.PHP"); ?>
-    <script>
-        $(document).ready(function () {
-        });
-    </script>
+<?php include_once("asset\Script.PHP"); ?>
+<script>
+    $(document).ready(function () {
+    });
+</script>
+
 </html>

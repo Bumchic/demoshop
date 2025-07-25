@@ -27,7 +27,8 @@
                         </div>
 
                         <!-- Block content -->
-
+                        <a href="pages/dashboard.PHP">dashboard</a>
+                        <a href="pages/ProductPage.PHP">product list</a>
                         <!-- End block content -->
                     </main>
                 </div>

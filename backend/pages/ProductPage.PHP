@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Nhúng file Quản lý các Liên kết CSS dùng chung cho toàn bộ trang web -->
-    <?php include("..\asset\Style.php") ?>
+    <?php include("..\asset\Style.php");
+            ?>
 
 </head>
 
@@ -31,7 +32,7 @@
                     <?php
                     // Access to db to get data
                     // 1. Include configuration file connecting to database, initial connection $conn
-                    include_once('../../backend/PHPmethod/connectDB.PHP');
+                    include_once('../../connectDB.PHP');
                     $conn = connectDb();
                     // 2. create query string $sql
                     $sql = "SELECT idproducts, Name, price, 'Stock-Quantity', Image_url, Category FROM products ORDER BY idproducts DESC";
@@ -69,7 +70,6 @@
                                     <td><?= $item[1] ?></td>
                                     <td><?= $item[2] ?></td>
                                     <td><?= $item[3] ?></td>
-                                    <td>
                                     <td>
                                         <img src="/demoshop/assets/<?= $item[4] ?>" alt=""
                                             style="width:200px;height:auto;" />
